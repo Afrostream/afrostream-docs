@@ -234,7 +234,7 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "grant_type",
-            "description": "<p>password|bouygues|refresh_token</p>"
+            "description": "<p>client_credentials|password|bouygues|refresh_token</p>"
           },
           {
             "group": "postData",
@@ -281,6 +281,11 @@ define({ "api": [
         ]
       },
       "examples": [
+        {
+          "title": "grant_type: \"client_credentials\"",
+          "content": "{\n  \"grant_type\": \"client_credentials\",\n  \"client_id\": \"apiKey\",\n  \"client_secret\": \"apiSecret\"\n}",
+          "type": "String"
+        },
         {
           "title": "grant_type: \"password\"",
           "content": "{\n  \"grant_type\": \"password\",\n  \"client_id\": \"apiKey\",\n  \"client_secret\": \"apiSecret\",\n  \"username\": \"foo@bar.com\",\n  \"password\": \"123456\"\n}",
@@ -1109,6 +1114,95 @@ define({ "api": [
             "optional": false,
             "field": "Category",
             "description": "<p>list.</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "text",
+            "optional": false,
+            "field": "401/Unauthorized.",
+            "description": ""
+          },
+          {
+            "group": "Error 4xx",
+            "type": "text",
+            "optional": false,
+            "field": "403/Forbidden",
+            "description": "<p>Required field [...] omitted.</p>"
+          }
+        ]
+      }
+    },
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "curl -i https://legacy-api.afrostream.tv/api/categorys/menu",
+        "type": "curl"
+      }
+    ],
+    "sampleRequest": [
+      {
+        "url": "https://legacy-api.afrostream.tv/api/categorys/menu"
+      }
+    ],
+    "version": "0.0.0",
+    "filename": "server/app/api/category/index.js",
+    "groupTitle": "Menu"
+  },
+  {
+    "type": "get",
+    "url": "/api/categorys/menu",
+    "title": "Request Menu Home information",
+    "name": "GetCategoryMenu",
+    "group": "Menu",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>Basic Access Authentication token.</p>"
+          },
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Content-Type",
+            "description": "<p>(application/x-www-form-urlencoded, application/json, application/xml).</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 201": [
+          {
+            "group": "Success 201",
+            "type": "text",
+            "optional": false,
+            "field": "Location",
+            "description": "<p>URI of created Thing.</p>"
+          },
+          {
+            "group": "Success 201",
+            "type": "text",
+            "optional": false,
+            "field": "body",
+            "description": "<p>Thing id.</p>"
+          }
+        ],
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Array",
+            "optional": false,
+            "field": "Category",
+            "description": "<p>list.</p>"
           },
           {
             "group": "Success 200",
@@ -1178,95 +1272,6 @@ define({ "api": [
     "sampleRequest": [
       {
         "url": "https://legacy-api.afrostream.tv/api/categorys/3"
-      }
-    ],
-    "version": "0.0.0",
-    "filename": "server/app/api/category/index.js",
-    "groupTitle": "Menu"
-  },
-  {
-    "type": "get",
-    "url": "/api/categorys/menu",
-    "title": "Request Menu Home information",
-    "name": "GetCategoryMenu",
-    "group": "Menu",
-    "header": {
-      "fields": {
-        "Header": [
-          {
-            "group": "Header",
-            "optional": false,
-            "field": "Authorization",
-            "description": "<p>Basic Access Authentication token.</p>"
-          },
-          {
-            "group": "Header",
-            "optional": false,
-            "field": "Content-Type",
-            "description": "<p>(application/x-www-form-urlencoded, application/json, application/xml).</p>"
-          }
-        ]
-      }
-    },
-    "success": {
-      "fields": {
-        "Success 201": [
-          {
-            "group": "Success 201",
-            "type": "text",
-            "optional": false,
-            "field": "Location",
-            "description": "<p>URI of created Thing.</p>"
-          },
-          {
-            "group": "Success 201",
-            "type": "text",
-            "optional": false,
-            "field": "body",
-            "description": "<p>Thing id.</p>"
-          }
-        ],
-        "Success 200": [
-          {
-            "group": "Success 200",
-            "type": "Array",
-            "optional": false,
-            "field": "Category",
-            "description": "<p>list.</p>"
-          }
-        ]
-      }
-    },
-    "error": {
-      "fields": {
-        "Error 4xx": [
-          {
-            "group": "Error 4xx",
-            "type": "text",
-            "optional": false,
-            "field": "401/Unauthorized.",
-            "description": ""
-          },
-          {
-            "group": "Error 4xx",
-            "type": "text",
-            "optional": false,
-            "field": "403/Forbidden",
-            "description": "<p>Required field [...] omitted.</p>"
-          }
-        ]
-      }
-    },
-    "examples": [
-      {
-        "title": "Example usage:",
-        "content": "curl -i https://legacy-api.afrostream.tv/api/categorys/menu",
-        "type": "curl"
-      }
-    ],
-    "sampleRequest": [
-      {
-        "url": "https://legacy-api.afrostream.tv/api/categorys/menu"
       }
     ],
     "version": "0.0.0",
